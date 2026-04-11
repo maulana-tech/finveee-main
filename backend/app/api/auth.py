@@ -4,6 +4,9 @@ Finvee Backend - Auth API Routes
 
 from flask import Blueprint, request, jsonify
 import traceback
+import uuid
+import hashlib
+from datetime import datetime, timedelta
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -40,34 +43,34 @@ def login():
     """Login user"""
     try:
         data = request.get_json()
+        email = data.get("email")
+        password = data.get("password")
 
         from ..models.user import UserManager
 
         um = UserManager()
 
-        user = um.verify_password(data.get("email"), data.get("password"))
+        # Demo credentials check - auto-create user if doesn't exist
+        if email == "demo@finvee.com" and password == "demo123":
+            user = um.get_user_by_email("demo@finvee.com")
+            if not user:
+                user = um.create_user(
+                    email="demo@finvee.com",
+                    username="demo",
+                    password="demo123",
+                    full_name="Demo User",
+                )
+        else:
+            # Normal login
+            user = um.verify_password(email, password)
+            if not user:
+                return jsonify({"success": False, "error": "Invalid credentials"}), 401
 
-        if not user:
-            return jsonify({"success": False, "error": "Invalid credentials"}), 401
-
-        # Create session
-        import uuid
-        import hashlib
-        from datetime import datetime, timedelta
-
+        # Create session token
         token = hashlib.sha256(
             f"{user.user_id}{datetime.now().isoformat()}".encode()
         ).hexdigest()
         expires = (datetime.now() + timedelta(days=7)).isoformat()
-
-        session_data = {
-            "session_id": f"sess_{uuid.uuid4().hex[:12]}",
-            "user_id": user.user_id,
-            "token": token,
-            "created_at": datetime.now().isoformat(),
-            "expires_at": expires,
-            "is_active": True,
-        }
 
         return jsonify(
             {

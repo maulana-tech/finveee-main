@@ -1,34 +1,50 @@
 <template>
-  <div class="page-container">
-    <h1>Learning Progress</h1>
-    
-    <div class="stats-grid">
-      <div class="stat-card">
-        <h3>Total Courses</h3>
-        <p>{{ enrollments.length }}</p>
+  <div class="page">
+    <header class="header">
+      <div class="header-left">
+        <router-link to="/dashboard" class="back-link">&lt; BACK</router-link>
+        <h1 class="title">/ PROGRESS</h1>
       </div>
-      <div class="stat-card">
-        <h3>Completed</h3>
-        <p class="completed">{{ completedCount }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>In Progress</h3>
-        <p class="in-progress">{{ inProgressCount }}</p>
-      </div>
-      <div class="stat-card">
-        <h3>Avg Progress</h3>
-        <p>{{ averageProgress }}%</p>
-      </div>
-    </div>
-    
-    <div class="recommendations" v-if="recommendations.length">
-      <h2>Recommended for You</h2>
-      <div class="rec-list">
-        <div v-for="rec in recommendations" :key="rec.course.course_id" class="rec-card">
-          <h3>{{ rec.course.title }}</h3>
-          <p>{{ rec.reason }}</p>
-          <button @click="enroll(rec.course.course_id)" class="btn-enroll">Enroll Now</button>
+    </header>
+
+    <div class="content">
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">TOTAL_COURSES</div>
+          <div class="stat-val">{{ enrollments.length }}</div>
         </div>
+        <div class="stat-card">
+          <div class="stat-label">COMPLETED</div>
+          <div class="stat-val done">{{ completedCount }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">IN_PROGRESS</div>
+          <div class="stat-val prog">{{ inProgressCount }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">AVG_PROGRESS</div>
+          <div class="stat-val">{{ averageProgress }}%</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Recommendations -->
+      <div v-if="recommendations.length" class="section">
+        <div class="section-title">■ RECOMMENDED</div>
+        <div class="rec-list">
+          <div v-for="rec in recommendations" :key="rec.course.course_id" class="rec-card">
+            <div class="rec-title">{{ rec.course.title }}</div>
+            <div class="rec-reason">{{ rec.reason }}</div>
+            <button @click="enroll(rec.course.course_id)" class="btn-enroll">ENROLL</button>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="enrollments.length === 0" class="empty">
+        <div class="empty-icon">[R]</div>
+        <div class="empty-text">No learning progress yet</div>
       </div>
     </div>
   </div>
@@ -56,33 +72,181 @@ const loadData = async () => {
     ])
     enrollments.value = enrRes.data.data || []
     recommendations.value = recRes.data.data || []
-  } catch (err) { console.error('Failed to load data:', err) }
+  } catch (err) { 
+    console.error('Failed to load data:', err) 
+  }
 }
 
 const enroll = async (courseId) => {
   try {
     await api.post('/api/learning/enrollments', { course_id: courseId })
     loadData()
-  } catch (err) { alert('Failed to enroll') }
+  } catch (err) { 
+    alert('Failed to enroll') 
+  }
 }
 
 onMounted(loadData)
 </script>
 
 <style scoped>
-.page-container { padding: 2rem; }
-h1 { margin-bottom: 2rem; }
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-.stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.stat-card h3 { margin: 0 0 0.5rem; color: #666; font-size: 0.9rem; }
-.stat-card p { margin: 0; font-size: 2rem; font-weight: 700; color: #333; }
-.stat-card p.completed { color: #27ae60; }
-.stat-card p.in-progress { color: #f39c12; }
-.recommendations { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-.recommendations h2 { margin: 0 0 1rem; }
-.rec-list { display: grid; gap: 1rem; }
-.rec-card { padding: 1rem; border: 1px solid #eee; border-radius: 8px; }
-.rec-card h3 { margin: 0 0 0.5rem; color: #333; }
-.rec-card p { margin: 0 0 1rem; color: #666; font-size: 0.9rem; }
-.btn-enroll { background: #667eea; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+.page {
+  min-height: 100vh;
+  background: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid #000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.back-link:hover {
+  color: #ff4500;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff4500;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.content {
+  padding: 24px;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 20px;
+  border: 2px solid #ccc;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat-val {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-val.done {
+  color: #27ae60;
+}
+
+.stat-val.prog {
+  color: #f39c12;
+}
+
+.divider {
+  height: 2px;
+  background: #ccc;
+  margin: 24px 0;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.rec-list {
+  display: grid;
+  gap: 12px;
+}
+
+.rec-card {
+  padding: 16px 20px;
+  border: 2px solid #ccc;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rec-card:hover {
+  border-color: #ff4500;
+}
+
+.rec-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.rec-reason {
+  font-size: 11px;
+  color: #666;
+}
+
+.btn-enroll {
+  background: #000;
+  border: 2px solid #000;
+  color: #fff;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-enroll:hover {
+  background: #ff4500;
+  border-color: #ff4500;
+}
+
+.empty {
+  padding: 60px;
+  text-align: center;
+  border: 2px solid #ccc;
+}
+
+.empty-icon {
+  font-size: 32px;
+  color: #ccc;
+  margin-bottom: 12px;
+}
+
+.empty-text {
+  font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 900px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 </style>

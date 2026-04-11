@@ -33,7 +33,13 @@ def create_app(config_class=Config):
         logger.info("Finvee Backend Starting...")
         logger.info("=" * 50)
 
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(
+        app,
+        resources={r"/api/*": {"origins": "*"}},
+        supports_credentials=True,
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allow_headers=["Content-Type", "Authorization", "X-User-ID", "Accept-Language"],
+    )
 
     @app.before_request
     def log_request():
@@ -48,11 +54,16 @@ def create_app(config_class=Config):
         logger.debug(f"Response: {response.status_code}")
         return response
 
-    from .api import auth_bp, financial_bp, learning_bp
+    # Import blueprints directly to avoid circular import issues
+    from .api.auth import auth_bp
+    from .api.financial import financial_bp
+    from .api.learning import learning_bp
+    from .api.simulation import simulation_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(financial_bp, url_prefix="/api/financial")
     app.register_blueprint(learning_bp, url_prefix="/api/learning")
+    app.register_blueprint(simulation_bp, url_prefix="/api/simulation")
 
     @app.route("/health")
     def health():

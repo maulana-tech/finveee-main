@@ -26,6 +26,17 @@ class User:
     is_active: bool = True
     role: str = "user"  # user, admin
 
+    def __post_init__(self):
+        # Ensure required fields are set
+        if not self.user_id:
+            raise ValueError("user_id is required")
+        if not self.email:
+            raise ValueError("email is required")
+        if not self.username:
+            raise ValueError("username is required")
+        if not self.password_hash:
+            raise ValueError("password_hash is required")
+
     def to_dict(self):
         return {
             "user_id": self.user_id,
@@ -44,8 +55,8 @@ class Session:
     session_id: str
     user_id: str
     token: str
-    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     expires_at: str
+    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     is_active: bool = True
 
     def to_dict(self):

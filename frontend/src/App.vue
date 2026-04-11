@@ -4,21 +4,6 @@
 
 <script setup>
 // Use Vue Router to manage pages
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-onMounted(() => {
-  // Check auth on app load
-  const token = localStorage.getItem('token')
-  const user = localStorage.getItem('user')
-  
-  // If no auth, redirect to login
-  if (!token || !user) {
-    router.push('/login')
-  }
-})
 </script>
 
 <style>

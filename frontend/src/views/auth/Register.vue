@@ -1,8 +1,10 @@
 <template>
   <div class="register-container">
     <div class="register-card">
-      <h1>Create Account</h1>
-      <p class="subtitle">Join Finvee today</p>
+      <div class="logo">
+        <h1>Finvee</h1>
+        <p class="tagline">Create your account</p>
+      </div>
       
       <form @submit.prevent="handleRegister">
         <div class="form-group">
@@ -26,7 +28,7 @@
         </div>
         
         <button type="submit" class="btn-primary" :disabled="loading">
-          {{ loading ? 'Creating account...' : 'Register' }}
+          {{ loading ? 'Creating account...' : 'Create Account' }}
         </button>
         
         <p v-if="error" class="error">{{ error }}</p>
@@ -42,7 +44,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../api'
+import api from '../../api'
 
 const router = useRouter()
 const fullName = ref('')
@@ -81,63 +83,82 @@ const handleRegister = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 1rem;
 }
 
 .register-card {
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
-h1 {
+.logo {
   text-align: center;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  text-align: center;
-  color: #666;
   margin-bottom: 2rem;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+.logo h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0;
+  letter-spacing: -1px;
 }
 
-label {
+.logo .tagline {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
   display: block;
   margin-bottom: 0.5rem;
   color: #333;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-input {
+.form-group input {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
   font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0f3460;
+  box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
 }
 
 .btn-primary {
   width: 100%;
-  padding: 0.75rem;
-  background: #667eea;
+  padding: 1rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 0.5rem;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 52, 96, 0.3);
 }
 
 .btn-primary:disabled {
@@ -149,16 +170,23 @@ input {
   color: #e74c3c;
   text-align: center;
   margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
 .switch-auth {
   text-align: center;
   margin-top: 1.5rem;
   color: #666;
+  font-size: 0.9rem;
 }
 
 .switch-auth a {
-  color: #667eea;
+  color: #0f3460;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.switch-auth a:hover {
+  text-decoration: underline;
 }
 </style>

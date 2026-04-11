@@ -1,4 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../views/Home.vue'
+import Process from '../views/MainView.vue'
+import SimulationView from '../views/SimulationView.vue'
+import SimulationRunView from '../views/SimulationRunView.vue'
+import ReportView from '../views/ReportView.vue'
+import InteractionView from '../views/InteractionView.vue'
 import Login from '../views/auth/Login.vue'
 import Register from '../views/auth/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
@@ -15,7 +21,38 @@ import LearningProgress from '../views/learning/Progress.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/process/:projectId',
+    name: 'Process',
+    component: Process,
+    props: true
+  },
+  {
+    path: '/simulation/:simulationId',
+    name: 'Simulation',
+    component: SimulationView,
+    props: true
+  },
+  {
+    path: '/simulation/:simulationId/start',
+    name: 'SimulationRun',
+    component: SimulationRunView,
+    props: true
+  },
+  {
+    path: '/report/:reportId',
+    name: 'Report',
+    component: ReportView,
+    props: true
+  },
+  {
+    path: '/interaction/:reportId',
+    name: 'Interaction',
+    component: InteractionView,
+    props: true
   },
   {
     path: '/login',
