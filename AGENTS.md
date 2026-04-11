@@ -1,4 +1,4 @@
-# AGENTS.md - MiroFish Development Guide
+# AGENTS.md - Finvee Development Guide
 
 ## Quick Start
 

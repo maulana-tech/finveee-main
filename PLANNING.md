@@ -10,7 +10,7 @@
 
 ## Current State
 
-The existing codebase is "MiroFish" - a social simulation engine using OASIS (camel-ai) for multi-agent simulation. It includes:
+The existing codebase is "Finvee" - a social simulation engine using OASIS (camel-ai) for multi-agent simulation. It includes:
 - Flask backend with graph-based entity management (Zep)
 - Vue 3 frontend with multi-step workflow
 - LLM-powered simulation and report generation
@@ -130,6 +130,6 @@ frontend/src/
 
 ## Notes
 
-- Keep existing MiroFish code archived in case needed later
+- Keep existing Finvee code archived in case needed later
 - Use existing LLM infrastructure (configurable via .env)
 - Target both web and mobile-responsive design

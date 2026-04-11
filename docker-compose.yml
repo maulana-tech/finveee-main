@@ -1,9 +1,9 @@
 services:
-  mirofish:
-    image: ghcr.io/666ghj/mirofish:latest
+  Finvee:
+    image: ghcr.io/666ghj/Finvee:latest
     # 加速镜像（如拉取缓慢可替换上方地址）
-    # image: ghcr.nju.edu.cn/666ghj/mirofish:latest
-    container_name: mirofish
+    # image: ghcr.nju.edu.cn/666ghj/Finvee:latest
+    container_name: Finvee
     env_file:
       - .env
     ports:

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/image/MiroFish_logo_compressed.jpeg" alt="Finvee Logo" width="50%"/>
+<img src="./static/image/Finvee_logo_compressed.jpeg" alt="Finvee Logo" width="50%"/>
 
 # Finvee
 
