@@ -55,7 +55,7 @@ const error = ref('')
 const handleRegister = async () => {
   loading.value = true
   error.value = ''
-  
+
   try {
     const response = await api.post('/api/auth/register', {
       full_name: fullName.value,
@@ -63,12 +63,12 @@ const handleRegister = async () => {
       username: username.value,
       password: password.value
     })
-    
-    if (response.data.success) {
+
+    if (response.success) {
       router.push('/login')
     }
   } catch (err) {
-    error.value = err.response?.data?.error || 'Registration failed'
+    error.value = err.response?.data?.error || err.message || 'Registration failed'
   } finally {
     loading.value = false
   }

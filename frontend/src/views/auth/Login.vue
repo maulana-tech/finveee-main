@@ -43,20 +43,20 @@ const error = ref('')
 const handleLogin = async () => {
   loading.value = true
   error.value = ''
-  
+
   try {
     const response = await api.post('/api/auth/login', {
       email: email.value,
       password: password.value
     })
-    
-    if (response.data.success) {
-      localStorage.setItem('token', response.data.data.token)
-      localStorage.setItem('user', JSON.stringify(response.data.data.user))
+
+    if (response.success) {
+      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('user', JSON.stringify(response.data.user))
       router.push('/dashboard')
     }
   } catch (err) {
-    error.value = err.response?.data?.error || 'Login failed'
+    error.value = err.response?.data?.error || err.message || 'Login failed'
   } finally {
     loading.value = false
   }
