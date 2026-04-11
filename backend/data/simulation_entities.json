@@ -1,0 +1,322 @@
+{
+  "companies": [
+    {
+      "entity_id": "comp_001",
+      "name": "TechCorp Solutions",
+      "type": "company",
+      "industry": "Technology",
+      "size": "medium",
+      "founded_year": 2015,
+      "financial_data": {
+        "revenue_2023": 15000000,
+        "revenue_2022": 12500000,
+        "revenue_2021": 10000000,
+        "expenses_2023": 11000000,
+        "profit_2023": 4000000,
+        "cash_reserve": 8000000,
+        "debt": 2000000,
+        "monthly_burn_rate": 916667,
+        "runway_months": 8.7
+      },
+      "metrics": {
+        "employees": 120,
+        "growth_rate": 0.20,
+        "customer_count": 850,
+        "churn_rate": 0.05,
+        "nps_score": 72
+      },
+      "financial_health": "good",
+      "risk_level": "low"
+    },
+    {
+      "entity_id": "comp_002",
+      "name": "RetailHub Inc",
+      "type": "company",
+      "industry": "Retail",
+      "size": "large",
+      "founded_year": 2010,
+      "financial_data": {
+        "revenue_2023": 85000000,
+        "revenue_2022": 78000000,
+        "revenue_2021": 72000000,
+        "expenses_2023": 72000000,
+        "profit_2023": 13000000,
+        "cash_reserve": 25000000,
+        "debt": 12000000,
+        "monthly_burn_rate": 6000000,
+        "runway_months": 4.2
+      },
+      "metrics": {
+        "employees": 450,
+        "growth_rate": 0.09,
+        "customer_count": 12000,
+        "churn_rate": 0.12,
+        "nps_score": 58
+      },
+      "financial_health": "stable",
+      "risk_level": "medium"
+    },
+    {
+      "entity_id": "comp_003",
+      "name": "GreenEnergy Co",
+      "type": "company",
+      "industry": "Energy",
+      "size": "small",
+      "founded_year": 2019,
+      "financial_data": {
+        "revenue_2023": 2500000,
+        "revenue_2022": 1800000,
+        "revenue_2021": 1200000,
+        "expenses_2023": 2800000,
+        "profit_2023": -300000,
+        "cash_reserve": 450000,
+        "debt": 1500000,
+        "monthly_burn_rate": 233333,
+        "runway_months": 1.9
+      },
+      "metrics": {
+        "employees": 28,
+        "growth_rate": 0.39,
+        "customer_count": 320,
+        "churn_rate": 0.08,
+        "nps_score": 65
+      },
+      "financial_health": "struggling",
+      "risk_level": "high"
+    },
+    {
+      "entity_id": "comp_004",
+      "name": "FinanceFlow Ltd",
+      "type": "company",
+      "industry": "FinTech",
+      "size": "medium",
+      "founded_year": 2017,
+      "financial_data": {
+        "revenue_2023": 22000000,
+        "revenue_2022": 18500000,
+        "revenue_2021": 15000000,
+        "expenses_2023": 16000000,
+        "profit_2023": 6000000,
+        "cash_reserve": 12000000,
+        "debt": 3500000,
+        "monthly_burn_rate": 1333333,
+        "runway_months": 9.0
+      },
+      "metrics": {
+        "employees": 180,
+        "growth_rate": 0.19,
+        "customer_count": 2500,
+        "churn_rate": 0.04,
+        "nps_score": 78
+      },
+      "financial_health": "excellent",
+      "risk_level": "low"
+    },
+    {
+      "entity_id": "comp_005",
+      "name": "MediCare Plus",
+      "type": "company",
+      "industry": "Healthcare",
+      "size": "large",
+      "founded_year": 2008,
+      "financial_data": {
+        "revenue_2023": 120000000,
+        "revenue_2022": 115000000,
+        "revenue_2021": 108000000,
+        "expenses_2023": 98000000,
+        "profit_2023": 22000000,
+        "cash_reserve": 45000000,
+        "debt": 15000000,
+        "monthly_burn_rate": 8166667,
+        "runway_months": 5.5
+      },
+      "metrics": {
+        "employees": 820,
+        "growth_rate": 0.04,
+        "customer_count": 15000,
+        "churn_rate": 0.06,
+        "nps_score": 82
+      },
+      "financial_health": "excellent",
+      "risk_level": "low"
+    }
+  ],
+  "individuals": [
+    {
+      "entity_id": "ind_001",
+      "name": "John Martinez",
+      "type": "individual",
+      "occupation": "Software Engineer",
+      "age": 32,
+      "location": "San Francisco, CA",
+      "financial_data": {
+        "income_monthly": 15000,
+        "income_annual": 180000,
+        "savings": 85000,
+        "investments": 120000,
+        "debt": 25000,
+        "credit_score": 780,
+        "expenses_monthly": 8000,
+        "savings_rate": 0.47
+      },
+      "metrics": {
+        "employment_stability": 0.95,
+        "debt_to_income": 0.17,
+        "emergency_fund_months": 10.6,
+        "investment_allocation": 0.58
+      },
+      "financial_health": "excellent",
+      "risk_tolerance": "high"
+    },
+    {
+      "entity_id": "ind_002",
+      "name": "Sarah Chen",
+      "type": "individual",
+      "occupation": "Marketing Manager",
+      "age": 28,
+      "location": "New York, NY",
+      "financial_data": {
+        "income_monthly": 12000,
+        "income_annual": 144000,
+        "savings": 42000,
+        "investments": 55000,
+        "debt": 45000,
+        "credit_score": 720,
+        "expenses_monthly": 7000,
+        "savings_rate": 0.42
+      },
+      "metrics": {
+        "employment_stability": 0.90,
+        "debt_to_income": 0.38,
+        "emergency_fund_months": 6.0,
+        "investment_allocation": 0.52
+      },
+      "financial_health": "good",
+      "risk_tolerance": "medium"
+    },
+    {
+      "entity_id": "ind_003",
+      "name": "Michael Johnson",
+      "type": "individual",
+      "occupation": "Small Business Owner",
+      "age": 45,
+      "location": "Austin, TX",
+      "financial_data": {
+        "income_monthly": 8500,
+        "income_annual": 102000,
+        "savings": 28000,
+        "investments": 15000,
+        "debt": 80000,
+        "credit_score": 680,
+        "expenses_monthly": 5500,
+        "savings_rate": 0.35
+      },
+      "metrics": {
+        "employment_stability": 0.70,
+        "debt_to_income": 0.94,
+        "emergency_fund_months": 5.1,
+        "investment_allocation": 0.27
+      },
+      "financial_health": "fair",
+      "risk_tolerance": "medium"
+    },
+    {
+      "entity_id": "ind_004",
+      "name": "Emily Wong",
+      "type": "individual",
+      "occupation": "Data Scientist",
+      "age": 29,
+      "location": "Seattle, WA",
+      "financial_data": {
+        "income_monthly": 16500,
+        "income_annual": 198000,
+        "savings": 95000,
+        "investments": 145000,
+        "debt": 15000,
+        "credit_score": 800,
+        "expenses_monthly": 7500,
+        "savings_rate": 0.55
+      },
+      "metrics": {
+        "employment_stability": 0.98,
+        "debt_to_income": 0.09,
+        "emergency_fund_months": 12.7,
+        "investment_allocation": 0.56
+      },
+      "financial_health": "excellent",
+      "risk_tolerance": "high"
+    },
+    {
+      "entity_id": "ind_005",
+      "name": "Robert Kim",
+      "type": "individual",
+      "occupation": "Teacher",
+      "age": 38,
+      "location": "Chicago, IL",
+      "financial_data": {
+        "income_monthly": 6500,
+        "income_annual": 78000,
+        "savings": 18000,
+        "investments": 25000,
+        "debt": 12000,
+        "credit_score": 750,
+        "expenses_monthly": 4500,
+        "savings_rate": 0.31
+      },
+      "metrics": {
+        "employment_stability": 0.92,
+        "debt_to_income": 0.18,
+        "emergency_fund_months": 4.0,
+        "investment_allocation": 0.42
+      },
+      "financial_health": "good",
+      "risk_tolerance": "low"
+    }
+  ],
+  "simulation_scenarios": [
+    {
+      "scenario_id": "scenario_001",
+      "name": "Economic Downturn Prediction",
+      "description": "Predict financial health impact when GDP growth slows to 1%",
+      "parameters": {
+        "GDP_growth": 0.01,
+        "unemployment_increase": 0.03,
+        "interest_rate_change": 0.015,
+        "inflation_rate": 0.045
+      }
+    },
+    {
+      "scenario_id": "scenario_002",
+      "name": "Tech Industry Boom",
+      "description": "Predict outcomes as tech sector sees 25% growth",
+      "parameters": {
+        "GDP_growth": 0.03,
+        "unemployment_decrease": 0.02,
+        "interest_rate_change": 0,
+        "inflation_rate": 0.03
+      }
+    },
+    {
+      "scenario_id": "scenario_003",
+      "name": "Recession Scenario",
+      "description": "Full recession with 5% negative GDP growth",
+      "parameters": {
+        "GDP_growth": -0.05,
+        "unemployment_increase": 0.08,
+        "interest_rate_change": -0.02,
+        "inflation_rate": 0.02
+      }
+    },
+    {
+      "scenario_id": "scenario_004",
+      "name": "Hyperinflation Alert",
+      "description": "High inflation scenario above 10%",
+      "parameters": {
+        "GDP_growth": -0.02,
+        "unemployment_increase": 0.05,
+        "interest_rate_change": 0.03,
+        "inflation_rate": 0.12
+      }
+    }
+  ]
+}
