@@ -171,7 +171,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../../api'
+import api from '../../api/index.js'
 
 const router = useRouter()
 const email = ref('demo@finvee.com')
@@ -187,21 +187,20 @@ const loginDemo = (type) => {
 const handleLogin = async () => {
   loading.value = true
   error.value = ''
-  
+
   try {
     const response = await api.post('/api/auth/login', {
       email: email.value,
       password: password.value
     })
-    
-    if (response.success === true && response.data) {
+
+    if (response.success) {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
-      window.location.href = '/dashboard'
+      router.push('/dashboard')
     }
   } catch (err) {
-    console.error('Login error:', err)
-    error.value = err.message || 'Login failed'
+    error.value = err.response?.data?.error || err.message || 'Login failed'
   } finally {
     loading.value = false
   }

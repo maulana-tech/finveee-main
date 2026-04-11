@@ -42,6 +42,7 @@ class User:
             "user_id": self.user_id,
             "email": self.email,
             "username": self.username,
+            "password_hash": self.password_hash,
             "full_name": self.full_name,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
