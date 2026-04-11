@@ -2,13 +2,13 @@
 Finvee Backend - Auth API Routes
 """
 
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 import traceback
 import uuid
 import hashlib
 from datetime import datetime, timedelta
 
-from . import auth_bp
+auth_bp = Blueprint("auth", __name__)
 
 
 @auth_bp.route("/register", methods=["POST"])

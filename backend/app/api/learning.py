@@ -2,10 +2,10 @@
 Finvee Backend - Learning API Routes
 """
 
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 import traceback
 
-from . import learning_bp
+learning_bp = Blueprint("learning", __name__)
 
 
 @learning_bp.route("/courses", methods=["GET"])

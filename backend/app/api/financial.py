@@ -2,10 +2,10 @@
 Finvee Backend - Financial API Routes
 """
 
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 import traceback
 
-from . import financial_bp
+financial_bp = Blueprint("financial", __name__)
 
 
 @financial_bp.route("/accounts", methods=["GET"])
