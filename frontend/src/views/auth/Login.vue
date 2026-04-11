@@ -14,12 +14,26 @@
           </div>
           <div class="feature">
             <span class="feature-icon">[#]</span>
-            <span>AI Learning</span>
+            <span>Learn Finance</span>
           </div>
           <div class="feature">
             <span class="feature-icon">[S]</span>
             <span>Swarm Simulation</span>
           </div>
+        </div>
+
+        <!-- Quick Demo -->
+        <div class="quick-demo">
+          <div class="demo-title">QUICK_DEMO</div>
+          <button @click="loginDemo('financial')" class="demo-btn">
+            <span>[F]</span> Financial Demo
+          </button>
+          <button @click="loginDemo('learning')" class="demo-btn">
+            <span>[L]</span> Learning Demo
+          </button>
+          <button @click="loginDemo('simulation')" class="demo-btn">
+            <span>[S]</span> Simulation Demo
+          </button>
         </div>
       </div>
     </div>
@@ -30,6 +44,84 @@
         <div class="card-header">
           <h1>SIGN_IN</h1>
           <p class="card-subtitle">Welcome back to Finvee</p>
+        </div>
+
+        <!-- Demo Tabs -->
+        <div class="demo-tabs">
+          <button 
+            @click="selectedDemo = 'financial'" 
+            :class="['demo-tab', { active: selectedDemo === 'financial' }]"
+          >
+            <span>[$]</span> Financial
+          </button>
+          <button 
+            @click="selectedDemo = 'learning'" 
+            :class="['demo-tab', { active: selectedDemo === 'learning' }]"
+          >
+            <span>[#]</span> Learning
+          </button>
+          <button 
+            @click="selectedDemo = 'simulation'" 
+            :class="['demo-tab', { active: selectedDemo === 'simulation' }]"
+          >
+            <span>[S]</span> Simulation
+          </button>
+        </div>
+
+        <!-- Demo Content based on selection -->
+        <div class="demo-content">
+          <template v-if="selectedDemo === 'financial'">
+            <div class="demo-feature">
+              <span class="icon">[$]</span>
+              <div class="info">
+                <strong>Financial Management</strong>
+                <p>Track income, expenses, budgets with AI fraud detection</p>
+              </div>
+            </div>
+            <div class="demo-features-list">
+              <div>+ Bank accounts management</div>
+              <div>+ Transaction tracking</div>
+              <div>+ Budget planning</div>
+              <div>+ AI Analytics & insights</div>
+              <div>+ Fraud detection</div>
+            </div>
+          </template>
+
+          <template v-if="selectedDemo === 'learning'">
+            <div class="demo-feature">
+              <span class="icon">[#]</span>
+              <div class="info">
+                <strong>AI Learning Platform</strong>
+                <p>Learn finance with AI tutor and personalized courses</p>
+              </div>
+            </div>
+            <div class="demo-features-list">
+              <div>+ Finance courses</div>
+              <div>+ AI tutor chat</div>
+              <div>+ Progress tracking</div>
+              <div>+ Personalized recommendations</div>
+            </div>
+            <div class="disclaimer">
+              <strong>NOTE:</strong> Educational purpose only. 
+              Not financial advice. Consult professionals for investment decisions.
+            </div>
+          </template>
+
+          <template v-if="selectedDemo === 'simulation'">
+            <div class="demo-feature">
+              <span class="icon">[S]</span>
+              <div class="info">
+                <strong>Swarm Intelligence</strong>
+                <p>AI agent simulation for financial prediction</p>
+              </div>
+            </div>
+            <div class="demo-features-list">
+              <div>+ Multi-agent simulation</div>
+              <div>+ Economic scenario modeling</div>
+              <div>+ Prediction reports</div>
+              <div>+ Interactive exploration</div>
+            </div>
+          </template>
         </div>
 
         <form @submit.prevent="handleLogin" class="login-form">
@@ -86,6 +178,11 @@ const email = ref('demo@finvee.com')
 const password = ref('demo123')
 const loading = ref(false)
 const error = ref('')
+const selectedDemo = ref('financial')
+
+const loginDemo = (type) => {
+  selectedDemo.value = type
+}
 
 const handleLogin = async () => {
   loading.value = true
@@ -173,6 +270,44 @@ const handleLogin = async () => {
   font-size: 14px;
   font-weight: 700;
   color: #ff4500;
+}
+
+/* Quick Demo Button */
+.quick-demo {
+  margin-top: 48px;
+}
+
+.demo-title {
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.demo-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: transparent;
+  border: 2px solid #444;
+  color: #888;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.demo-btn:hover {
+  border-color: #ff4500;
+  color: #fff;
+  background: #ff4500;
+}
+
+.demo-btn span {
+  font-weight: 700;
 }
 
 /* Right Side - Login Form */
@@ -319,6 +454,103 @@ const handleLogin = async () => {
 
 .auth-switch a:hover {
   text-decoration: underline;
+}
+
+/* Demo Tabs */
+.demo-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.demo-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 2px solid #ccc;
+  color: #666;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.demo-tab:hover {
+  border-color: #ff4500;
+}
+
+.demo-tab.active {
+  background: #ff4500;
+  border-color: #ff4500;
+  color: #000;
+}
+
+.demo-tab span {
+  font-weight: 700;
+}
+
+/* Demo Content */
+.demo-content {
+  padding: 16px;
+  background: #f8f8f8;
+  border: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.demo-feature {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.demo-feature .icon {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff4500;
+}
+
+.demo-feature .info strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.demo-feature .info p {
+  font-size: 11px;
+  color: #666;
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.demo-features-list {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.8;
+}
+
+.demo-features-list div::before {
+  content: "+ ";
+  color: #27ae60;
+  font-weight: 700;
+}
+
+/* Disclaimer */
+.disclaimer {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fff5f0;
+  border: 2px solid #ff4500;
+  font-size: 10px;
+  color: #ff4500;
+}
+
+.disclaimer strong {
+  display: block;
+  margin-bottom: 4px;
 }
 
 /* Responsive */
