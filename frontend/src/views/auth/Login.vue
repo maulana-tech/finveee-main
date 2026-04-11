@@ -1,36 +1,77 @@
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="logo">
-        <h1>Finvee</h1>
-        <p class="tagline">AI-Powered Finance & Learning</p>
+  <div class="login-page">
+    <!-- Left Side - Branding -->
+    <div class="login-branding">
+      <div class="brand-content">
+        <div class="brand-logo">■</div>
+        <div class="brand-name">FINVEE</div>
+        <div class="brand-desc">AI-Powered Finance, Learning & Swarm Intelligence</div>
+        
+        <div class="brand-features">
+          <div class="feature">
+            <span class="feature-icon">[$]</span>
+            <span>Financial Management</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">[#]</span>
+            <span>AI Learning</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">[S]</span>
+            <span>Swarm Simulation</span>
+          </div>
+        </div>
       </div>
-      
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label>Email</label>
-          <input v-model="email" type="email" placeholder="Enter your email" required />
+    </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="login-form-section">
+      <div class="login-card">
+        <div class="card-header">
+          <h1>SIGN_IN</h1>
+          <p class="card-subtitle">Welcome back to Finvee</p>
         </div>
-        
-        <div class="form-group">
-          <label>Password</label>
-          <input v-model="password" type="password" placeholder="Enter your password" required />
+
+        <form @submit.prevent="handleLogin" class="login-form">
+          <div class="form-group">
+            <label>EMAIL</label>
+            <input 
+              v-model="email" 
+              type="email" 
+              placeholder="Enter your email" 
+              required 
+            />
+          </div>
+          
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <input 
+              v-model="password" 
+              type="password" 
+              placeholder="Enter your password" 
+              required 
+            />
+          </div>
+          
+          <button type="submit" class="btn-login" :disabled="loading">
+            {{ loading ? 'LOGGING_IN...' : 'LOGIN' }}
+          </button>
+          
+          <div v-if="error" class="error-box">
+            {{ error }}
+          </div>
+        </form>
+
+        <div class="demo-box">
+          <div class="demo-label">DEMO_ACCOUNT</div>
+          <div class="demo-creds">demo@finvee.com / demo123</div>
         </div>
-        
-        <button type="submit" class="btn-primary" :disabled="loading">
-          {{ loading ? 'Logging in...' : 'Login' }}
-        </button>
-        
-        <div class="demo-hint">
-          <p>Demo: demo@finvee.com / demo123</p>
+
+        <div class="auth-switch">
+          Don't have an account? 
+          <router-link to="/register">Register</router-link>
         </div>
-        
-        <p v-if="error" class="error">{{ error }}</p>
-      </form>
-      
-      <p class="switch-auth">
-        Don't have an account? <router-link to="/register">Register</router-link>
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -51,20 +92,14 @@ const handleLogin = async () => {
   error.value = ''
   
   try {
-    console.log('Attempting login...')
     const response = await api.post('/api/auth/login', {
       email: email.value,
       password: password.value
     })
     
-    console.log('Login response:', response)
-    
     if (response.success === true && response.data) {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
-      console.log('Login successful, redirecting...')
-      
-      // Force page reload to ensure clean state
       window.location.href = '/dashboard'
     }
   } catch (err) {
@@ -77,129 +112,236 @@ const handleLogin = async () => {
 </script>
 
 <style scoped>
-.login-container {
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.login-page {
   min-height: 100vh;
+  display: flex;
+  background: #000;
+}
+
+/* Left Side - Branding */
+.login-branding {
+  flex: 1;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  padding: 1rem;
+  padding: 40px;
+}
+
+.brand-content {
+  max-width: 400px;
+}
+
+.brand-logo {
+  font-size: 64px;
+  color: #ff4500;
+  margin-bottom: 16px;
+}
+
+.brand-name {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.brand-desc {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 48px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.feature-icon {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ff4500;
+}
+
+/* Right Side - Login Form */
+.login-form-section {
+  width: 480px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
 .login-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   width: 100%;
-  max-width: 420px;
+  max-width: 360px;
 }
 
-.logo {
-  text-align: center;
-  margin-bottom: 2rem;
+.card-header {
+  margin-bottom: 32px;
 }
 
-.logo h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1a1a2e;
-  margin: 0;
-  letter-spacing: -1px;
+.card-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 2px;
+  margin: 0 0 8px 0;
 }
 
-.logo .tagline {
+.card-subtitle {
+  font-size: 13px;
   color: #666;
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form-group {
-  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
+  font-size: 10px;
   font-weight: 600;
-  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 1px;
 }
 
 .form-group input {
-  width: 100%;
-  padding: 0.875rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  padding: 14px 16px;
+  border: 2px solid #ccc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  transition: border-color 0.15s;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #0f3460;
-  box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+  border-color: #ff4500;
 }
 
-.btn-primary {
-  width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
+.form-group input::placeholder {
+  color: #999;
+}
+
+/* Button */
+.btn-login {
+  padding: 14px;
+  background: #000;
+  border: 2px solid #000;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.15s;
+  margin-top: 8px;
 }
 
-.btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(15, 52, 96, 0.3);
+.btn-login:hover:not(:disabled) {
+  background: #ff4500;
+  border-color: #ff4500;
 }
 
-.btn-primary:disabled {
+.btn-login:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.demo-hint {
-  background: #f0f7ff;
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-top: 1rem;
+/* Error */
+.error-box {
+  padding: 12px;
+  background: #fff5f5;
+  border: 2px solid #ff4500;
+  color: #ff4500;
+  font-size: 11px;
   text-align: center;
 }
 
-.demo-hint p {
-  margin: 0;
-  color: #0f3460;
-  font-size: 0.85rem;
-  font-weight: 500;
+/* Demo Box */
+.demo-box {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f8f8f8;
+  border: 2px solid #ccc;
 }
 
-.error {
-  color: #e74c3c;
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.switch-auth {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.switch-auth a {
-  color: #0f3460;
+.demo-label {
+  font-size: 9px;
   font-weight: 600;
-  text-decoration: none;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
-.switch-auth a:hover {
+.demo-creds {
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #333;
+}
+
+/* Auth Switch */
+.auth-switch {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.auth-switch a {
+  color: #ff4500;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
   text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+  
+  .login-branding {
+    padding: 32px;
+    min-height: 200px;
+  }
+  
+  .brand-content {
+    text-align: center;
+  }
+  
+  .brand-features {
+    align-items: center;
+  }
+  
+  .login-form-section {
+    width: 100%;
+  }
 }
 </style>

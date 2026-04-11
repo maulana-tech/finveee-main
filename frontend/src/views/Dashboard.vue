@@ -20,90 +20,55 @@
     </header>
 
     <div class="body">
-      <!-- Sidebar - Simple Menu -->
+      <!-- Sidebar - ALL MENU ALWAYS VISIBLE -->
       <aside class="sidebar">
-        <div class="sidebar-label">■ NAVIGATE</div>
+        <div class="sidebar-label">■ ALL_MENU</div>
         
-        <!-- Financial -->
+        <!-- Financial Section -->
         <router-link to="/financial/accounts" class="nav-item group-header">
           <span class="nav-icon">[$]</span>
           <span class="nav-text">FINANCIAL</span>
         </router-link>
-        <router-link to="/financial/accounts" class="nav-item">
-          <span class="nav-icon">[B]</span>
-          <span class="nav-text">Accounts</span>
-        </router-link>
-        <router-link to="/financial/transactions" class="nav-item">
-          <span class="nav-icon">[T]</span>
-          <span class="nav-text">Transactions</span>
-        </router-link>
-        <router-link to="/financial/budgets" class="nav-item">
-          <span class="nav-icon">[P]</span>
-          <span class="nav-text">Budgets</span>
-        </router-link>
-        <router-link to="/financial/analytics" class="nav-item">
-          <span class="nav-icon">[A]</span>
-          <span class="nav-text">Analytics</span>
-        </router-link>
-        <router-link to="/financial/fraud" class="nav-item">
-          <span class="nav-icon">[F]</span>
-          <span class="nav-text">Fraud Detection</span>
-        </router-link>
+        <router-link to="/financial/accounts" class="nav-item"> <span class="nav-icon">[B]</span> <span class="nav-text">Accounts</span> </router-link>
+        <router-link to="/financial/transactions" class="nav-item"> <span class="nav-icon">[T]</span> <span class="nav-text">Transactions</span> </router-link>
+        <router-link to="/financial/budgets" class="nav-item"> <span class="nav-icon">[P]</span> <span class="nav-text">Budgets</span> </router-link>
+        <router-link to="/financial/analytics" class="nav-item"> <span class="nav-icon">[A]</span> <span class="nav-text">Analytics</span> </router-link>
+        <router-link to="/financial/fraud" class="nav-item"> <span class="nav-icon">[F]</span> <span class="nav-text">Fraud Detection</span> </router-link>
 
         <div class="sidebar-divider"></div>
         
-        <!-- Learning -->
+        <!-- Learning Section -->
         <router-link to="/learning/courses" class="nav-item group-header">
           <span class="nav-icon">[#]</span>
           <span class="nav-text">LEARNING</span>
         </router-link>
-        <router-link to="/learning/courses" class="nav-item">
-          <span class="nav-icon">[C]</span>
-          <span class="nav-text">Courses</span>
-        </router-link>
-        <router-link to="/learning/enrollments" class="nav-item">
-          <span class="nav-icon">[E]</span>
-          <span class="nav-text">Enrollments</span>
-        </router-link>
-        <router-link to="/learning/tutoring" class="nav-item">
-          <span class="nav-icon">[S]</span>
-          <span class="nav-text">AI Tutoring</span>
-        </router-link>
-        <router-link to="/learning/progress" class="nav-item">
-          <span class="nav-icon">[R]</span>
-          <span class="nav-text">Progress</span>
-        </router-link>
+        <router-link to="/learning/courses" class="nav-item"> <span class="nav-icon">[C]</span> <span class="nav-text">Courses</span> </router-link>
+        <router-link to="/learning/enrollments" class="nav-item"> <span class="nav-icon">[E]</span> <span class="nav-text">Enrollments</span> </router-link>
+        <router-link to="/learning/tutoring" class="nav-item"> <span class="nav-icon">[S]</span> <span class="nav-text">AI Tutoring</span> </router-link>
+        <router-link to="/learning/progress" class="nav-item"> <span class="nav-icon">[R]</span> <span class="nav-text">Progress</span> </router-link>
 
         <div class="sidebar-divider"></div>
         
-        <!-- Simulation -->
+        <!-- Simulation Section -->
         <router-link to="/process/new" class="nav-item group-header">
           <span class="nav-icon">[S]</span>
           <span class="nav-text">SIMULATION</span>
         </router-link>
-        <router-link to="/process/new" class="nav-item">
-          <span class="nav-icon">[+]</span>
-          <span class="nav-text">New Project</span>
-        </router-link>
-        <div class="nav-item" @click="goToRecent">
-          <span class="nav-icon">[R]</span>
-          <span class="nav-text">Recent Projects</span>
-        </div>
-        <router-link to="/report/demo" class="nav-item">
-          <span class="nav-icon">[D]</span>
-          <span class="nav-text">Demo Report</span>
-        </router-link>
+        <router-link to="/process/new" class="nav-item"> <span class="nav-icon">[+]</span> <span class="nav-text">New Project</span> </router-link>
+        <div class="nav-item" @click="goToRecent"> <span class="nav-icon">[R]</span> <span class="nav-text">Recent</span> </div>
+        <router-link to="/report/demo" class="nav-item"> <span class="nav-icon">[D]</span> <span class="nav-text">Demo Report</span> </router-link>
       </aside>
 
-      <!-- Main Content -->
+      <!-- Main Content - ALL MODULES STATS -->
       <main class="main">
         <div class="tab-header">
-          <h1 class="tab-title">/ {{ activeTab.toUpperCase() }}</h1>
+          <h1 class="tab-title">/ DASHBOARD</h1>
           <span class="tab-time">{{ currentTime }}</span>
         </div>
 
-        <!-- Financial Content -->
-        <div v-if="activeTab === 'financial'" class="tab-content">
+        <!-- FINANCIAL STATS -->
+        <div class="stats-section">
+          <div class="section-label">■ FINANCIAL</div>
           <div class="stats-row">
             <div class="stat-card large">
               <div class="stat-name">TOTAL_BALANCE</div>
@@ -118,52 +83,13 @@
               <div class="stat-val neg">-{{ formatCurrency(monthlyExpenses) }}</div>
             </div>
           </div>
-
-          <div class="divider"></div>
-
-          <div class="section-label">■ QUICK_ACTIONS</div>
-          
-          <div class="actions-grid">
-            <router-link to="/financial/accounts" class="action-card">
-              <span class="action-icon">[B]</span>
-              <div class="action-info">
-                <div class="action-title">ACCOUNTS</div>
-                <div class="action-desc">Manage bank accounts</div>
-              </div>
-            </router-link>
-            <router-link to="/financial/transactions" class="action-card">
-              <span class="action-icon">[T]</span>
-              <div class="action-info">
-                <div class="action-title">TRANSACTIONS</div>
-                <div class="action-desc">Track income & expense</div>
-              </div>
-            </router-link>
-            <router-link to="/financial/budgets" class="action-card">
-              <span class="action-icon">[P]</span>
-              <div class="action-info">
-                <div class="action-title">BUDGETS</div>
-                <div class="action-desc">Plan monthly spending</div>
-              </div>
-            </router-link>
-            <router-link to="/financial/analytics" class="action-card">
-              <span class="action-icon">[A]</span>
-              <div class="action-info">
-                <div class="action-title">ANALYTICS</div>
-                <div class="action-desc">View financial insights</div>
-              </div>
-            </router-link>
-            <router-link to="/financial/fraud" class="action-card">
-              <span class="action-icon">[F]</span>
-              <div class="action-info">
-                <div class="action-title">FRAUD_DETECTION</div>
-                <div class="action-desc">AI-powered security</div>
-              </div>
-            </router-link>
-          </div>
         </div>
 
-        <!-- Learning Content -->
-        <div v-if="activeTab === 'learning'" class="tab-content">
+        <div class="divider"></div>
+
+        <!-- LEARNING STATS -->
+        <div class="stats-section">
+          <div class="section-label">■ LEARNING</div>
           <div class="stats-row">
             <div class="stat-card large">
               <div class="stat-name">ENROLLED</div>
@@ -178,112 +104,45 @@
               <div class="stat-val prog">{{ inProgressCourses }}</div>
             </div>
           </div>
+        </div>
 
-          <div class="divider"></div>
+        <div class="divider"></div>
 
-          <div class="section-label">■ QUICK_ACTIONS</div>
-          
-          <div class="actions-grid">
-            <router-link to="/learning/courses" class="action-card">
-              <span class="action-icon">[C]</span>
-              <div class="action-info">
-                <div class="action-title">COURSES</div>
-                <div class="action-desc">Browse all courses</div>
-              </div>
-            </router-link>
-            <router-link to="/learning/enrollments" class="action-card">
-              <span class="action-icon">[E]</span>
-              <div class="action-info">
-                <div class="action-title">ENROLLMENTS</div>
-                <div class="action-desc">View enrollments</div>
-              </div>
-            </router-link>
-            <router-link to="/learning/tutoring" class="action-card">
-              <span class="action-icon">[S]</span>
-              <div class="action-info">
-                <div class="action-title">AI_TUTORING</div>
-                <div class="action-desc">Chat with AI tutor</div>
-              </div>
-            </router-link>
-            <router-link to="/learning/progress" class="action-card">
-              <span class="action-icon">[R]</span>
-              <div class="action-info">
-                <div class="action-title">PROGRESS</div>
-                <div class="action-desc">Track learning journey</div>
-              </div>
-            </router-link>
+        <!-- SIMULATION STATS -->
+        <div class="stats-section">
+          <div class="section-label">■ SWARM_INTELLIGENCE</div>
+          <div class="stats-row">
+            <div class="stat-card large">
+              <div class="stat-name">AGENTS</div>
+              <div class="stat-val">1000+</div>
+            </div>
+            <div class="stat-card large">
+              <div class="stat-name">STATUS</div>
+              <div class="stat-val">ACTIVE</div>
+            </div>
+            <div class="stat-card large">
+              <div class="stat-name">PREDICTION</div>
+              <div class="stat-val done">ENABLED</div>
+            </div>
           </div>
         </div>
 
-        <!-- Simulation Content -->
-        <div v-if="activeTab === 'simulation'" class="tab-content">
-          <div class="sim-hero">
-            <div class="sim-title">SWARM INTELLIGENCE</div>
-            <div class="sim-desc">
-              Create a swarm intelligence mirror that maps reality.
-              Predict outcomes by simulating thousands of AI agents.
-            </div>
-          </div>
+        <div class="divider"></div>
 
-          <div class="divider"></div>
-
-          <div class="section-label">■ WORKFLOW</div>
-          
-          <div class="workflow-row">
-            <div class="workflow-card">
-              <div class="step-num">01</div>
-              <div class="step-name">GRAPH_BUILD</div>
-              <div class="step-desc">Extract seed info & build knowledge graph</div>
-            </div>
-            <div class="workflow-card">
-              <div class="step-num">02</div>
-              <div class="step-name">ENV_SETUP</div>
-              <div class="step-desc">Configure agents & environment</div>
-            </div>
-            <div class="workflow-card">
-              <div class="step-num">03</div>
-              <div class="step-name">SIMULATION</div>
-              <div class="step-desc">Run multi-agent simulation</div>
-            </div>
-            <div class="workflow-card">
-              <div class="step-num">04</div>
-              <div class="step-name">REPORT</div>
-              <div class="step-desc">Generate prediction report</div>
-            </div>
-            <div class="workflow-card">
-              <div class="step-num">05</div>
-              <div class="step-name">INTERACTION</div>
-              <div class="step-desc">Chat with agents & explore</div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="section-label">■ QUICK_ACTIONS</div>
-          
-          <div class="actions-grid">
-            <router-link to="/process/new" class="action-card">
-              <span class="action-icon">[+]</span>
-              <div class="action-info">
-                <div class="action-title">NEW_PROJECT</div>
-                <div class="action-desc">Start new simulation</div>
-              </div>
-            </router-link>
-            <div class="action-card" @click="goToRecent">
-              <span class="action-icon">[R]</span>
-              <div class="action-info">
-                <div class="action-title">RECENT</div>
-                <div class="action-desc">Load recent projects</div>
-              </div>
-            </div>
-            <router-link to="/report/demo" class="action-card">
-              <span class="action-icon">[D]</span>
-              <div class="action-info">
-                <div class="action-title">DEMO_REPORT</div>
-                <div class="action-desc">View sample prediction</div>
-              </div>
-            </router-link>
-          </div>
+        <!-- Quick Links -->
+        <div class="section-label">■ QUICK_LINKS</div>
+        <div class="actions-grid">
+          <router-link to="/financial/accounts" class="action-card"> <span class="action-icon">[B]</span> <div class="action-info"> <div class="action-title">ACCOUNTS</div> <div class="action-desc">Manage bank accounts</div> </div> </router-link>
+          <router-link to="/financial/transactions" class="action-card"> <span class="action-icon">[T]</span> <div class="action-info"> <div class="action-title">TRANSACTIONS</div> <div class="action-desc">Track income & expense</div> </div> </router-link>
+          <router-link to="/financial/budgets" class="action-card"> <span class="action-icon">[P]</span> <div class="action-info"> <div class="action-title">BUDGETS</div> <div class="action-desc">Plan monthly spending</div> </div> </router-link>
+          <router-link to="/financial/analytics" class="action-card"> <span class="action-icon">[A]</span> <div class="action-info"> <div class="action-title">ANALYTICS</div> <div class="action-desc">View financial insights</div> </div> </router-link>
+          <router-link to="/financial/fraud" class="action-card"> <span class="action-icon">[F]</span> <div class="action-info"> <div class="action-title">FRAUD_DETECTION</div> <div class="action-desc">AI-powered security</div> </div> </router-link>
+          <router-link to="/learning/courses" class="action-card"> <span class="action-icon">[C]</span> <div class="action-info"> <div class="action-title">COURSES</div> <div class="action-desc">Browse all courses</div> </div> </router-link>
+          <router-link to="/learning/enrollments" class="action-card"> <span class="action-icon">[E]</span> <div class="action-info"> <div class="action-title">ENROLLMENTS</div> <div class="action-desc">View enrollments</div> </div> </router-link>
+          <router-link to="/learning/tutoring" class="action-card"> <span class="action-icon">[S]</span> <div class="action-info"> <div class="action-title">AI_TUTORING</div> <div class="action-desc">Chat with AI tutor</div> </div> </router-link>
+          <router-link to="/learning/progress" class="action-card"> <span class="action-icon">[R]</span> <div class="action-info"> <div class="action-title">PROGRESS</div> <div class="action-desc">Track learning journey</div> </div> </router-link>
+          <router-link to="/process/new" class="action-card"> <span class="action-icon">[+]</span> <div class="action-info"> <div class="action-title">NEW_PROJECT</div> <div class="action-desc">Start simulation</div> </div> </router-link>
+          <router-link to="/report/demo" class="action-card"> <span class="action-icon">[D]</span> <div class="action-info"> <div class="action-title">DEMO_REPORT</div> <div class="action-desc">View sample prediction</div> </div> </router-link>
         </div>
       </main>
     </div>
