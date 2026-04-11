@@ -44,8 +44,8 @@ class Session:
     session_id: str
     user_id: str
     token: str
-    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     expires_at: str
+    created_at: str = field(default_factory=lambda: datetime.now().isoformat())
     is_active: bool = True
 
     def to_dict(self):
